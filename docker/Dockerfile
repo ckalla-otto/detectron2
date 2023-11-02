@@ -50,7 +50,9 @@ RUN pip install --user -e detectron2_repo
 
 # Set a fixed model cache directory.
 ENV FVCORE_CACHE="/tmp"
-WORKDIR /home/appuser/detectron2_repo
+
+WORKDIR /home/appuser/detectron2_repo/projects/DensePose
+RUN sh -c "wget https://dl.fbaipublicfiles.com/densepose/densepose_rcnn_R_50_FPN_s1x/165712039/model_final_162be9.pkl && mv model_final_162be9.pkl densepose_rcnn_R_50_FPN_s1x.pkl"
 
 # run detectron2 under user "appuser":
 # wget http://images.cocodataset.org/val2017/000000439715.jpg -O input.jpg
