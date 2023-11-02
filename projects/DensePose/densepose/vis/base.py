@@ -15,10 +15,10 @@ class MatrixVisualizer:
 
     def __init__(
         self,
-        inplace=True,
+        inplace=False,
         cmap=cv2.COLORMAP_PARULA,
         val_scale=1.0,
-        alpha=0.7,
+        alpha=1,
         interp_method_matrix=cv2.INTER_LINEAR,
         interp_method_mask=cv2.INTER_NEAREST,
     ):
@@ -35,7 +35,8 @@ class MatrixVisualizer:
         if self.inplace:
             image_target_bgr = image_bgr
         else:
-            image_target_bgr = image_bgr * 0
+            image_target_bgr = image_bgr
+            image_target_bgr *= 0
         x, y, w, h = [int(v) for v in bbox_xywh]
         if w <= 0 or h <= 0:
             return image_bgr
